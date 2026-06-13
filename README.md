@@ -304,8 +304,6 @@ Visualize Results
 
 **Kushagra Pandey**
 
-Bachelor's in Quantitative Finance
-
 Aspiring Quantitative Researcher & Financial Engineer
 
 ---
