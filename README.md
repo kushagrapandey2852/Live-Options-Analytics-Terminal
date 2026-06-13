@@ -1,317 +1,45 @@
-<div align="center">
+# Live Options Analytics Terminal
 
-# 📈 Live Options Analytics Terminal
+Real-time options analytics terminal with live Greeks, implied volatility surface, P&L scenario matrix, and delta-hedging simulation.
 
-### Institutional-Grade Options Analytics & Risk Management Platform
-
-Real-time options chain monitoring, Greeks analytics, implied volatility visualization, P&L scenario modeling, and delta-hedging simulation powered by quantitative finance models.
-
-![Python](https://img.shields.io/badge/Python-3.10+-blue?style=for-the-badge&logo=python)
-![FastAPI](https://img.shields.io/badge/FastAPI-Backend-green?style=for-the-badge&logo=fastapi)
-![Plotly](https://img.shields.io/badge/Plotly-Dash-blueviolet?style=for-the-badge&logo=plotly)
-![Finance](https://img.shields.io/badge/Quantitative-Finance-gold?style=for-the-badge)
-![Status](https://img.shields.io/badge/Status-Active-success?style=for-the-badge)
-
-</div>
-
----
-
-## 🎯 Overview
-
-**Live Options Analytics Terminal** is a quantitative finance platform designed to provide professional-grade options market analysis. The system integrates live market data, computes option Greeks in real time, visualizes implied volatility surfaces, performs scenario-based risk analysis, and simulates delta-neutral hedging strategies.
-
-The project demonstrates the practical application of financial engineering, derivatives pricing, and quantitative risk management concepts used by proprietary trading firms, hedge funds, and derivatives brokers.
-
----
-
-## ✨ Key Features
-
-### 📊 Real-Time Options Chain
-- Live Calls & Puts monitoring
-- Strike-wise analytics
-- Open Interest tracking
-- Volume analysis
-- Market sentiment indicators
-
-### 🧮 Greeks Engine
-Compute and visualize:
-
-| Greek | Purpose |
-|---------|---------|
-| Δ Delta | Price sensitivity |
-| Γ Gamma | Delta sensitivity |
-| Θ Theta | Time decay |
-| V Vega | Volatility sensitivity |
-| ρ Rho | Interest rate sensitivity |
-
-### 🌊 Implied Volatility Analytics
-- IV Calculation
-- Volatility Smile Analysis
-- Volatility Skew Detection
-- Interactive IV Surface Visualization
-
-### 📉 P&L Scenario Matrix
-- Price Movement Analysis
-- Volatility Impact Assessment
-- Time Decay Scenarios
-- Strategy Stress Testing
-
-### ⚖️ Delta Hedging Simulator
-- Dynamic Rebalancing
-- Hedge Effectiveness Tracking
-- Portfolio Risk Monitoring
-- Hedging Cost Analysis
-
-### 📈 Interactive Dashboard
-- Live Charts
-- Greeks Heatmaps
-- IV Surface Plots
-- Risk Metrics Visualization
-- Portfolio Analytics
-
----
-
-## 🏗️ System Architecture
-
-```text
-┌───────────────────────┐
-│   Market Data APIs    │
-└──────────┬────────────┘
-           │
-           ▼
-┌───────────────────────┐
-│ Data Collection Layer │
-└──────────┬────────────┘
-           │
-           ▼
-┌─────────────────────────────────┐
-│  Options Analytics Engine       │
-│                                 │
-│  • Black-Scholes Pricing        │
-│  • Greeks Calculator            │
-│  • IV Solver                    │
-│  • Risk Analytics               │
-│  • Hedging Simulator            │
-└──────────┬──────────────────────┘
-           │
-           ▼
-┌───────────────────────┐
-│     FastAPI Backend   │
-└──────────┬────────────┘
-           │
-           ▼
-┌───────────────────────┐
-│   Plotly Dashboard    │
-└───────────────────────┘
-```
-
----
-
-## 🛠️ Technology Stack
-
-### Backend
+Stack
 - Python
 - FastAPI
-- Pandas
-- NumPy
-- SciPy
-
-### Quantitative Models
-- Black-Scholes Option Pricing
-- Greeks Computation
-- Implied Volatility Solver
-- Delta Hedging Framework
-
-### Data Sources
+- Dash
 - yFinance
-- Market Data APIs
+- Black-Scholes
+- Plotly
 
-### Visualization
-- Plotly Dash
-- Plotly Graphs
-- Interactive Analytics
+## Features
+- Fetch live options chain from market data
+- Compute Delta, Gamma, Vega, Theta, Rho
+- Visualize implied volatility surface
+- Build a P&L scenario matrix for option positions
+- Simulate delta-hedging and hedging performance
+- Minimal aesthetic frontend with responsive charts
 
----
+## Install
 
-## 💡 Financial Models Implemented
-
-### Black-Scholes Option Pricing
-- European Call Pricing
-- European Put Pricing
-- Risk-Neutral Valuation
-
-### Greeks Computation
-- Delta
-- Gamma
-- Vega
-- Theta
-- Rho
-
-### Volatility Analytics
-- Historical Volatility
-- Implied Volatility
-- Volatility Surface Construction
-
-### Risk Management
-- Scenario Analysis
-- Sensitivity Analysis
-- Delta Hedging Simulation
-
----
-
-## 📊 Dashboard Modules
-
-| Module | Description |
-|----------|------------|
-| Options Chain | Live options market data |
-| Greeks Dashboard | Real-time Greeks visualization |
-| IV Surface | Volatility surface analysis |
-| P&L Matrix | Profit/Loss scenario testing |
-| Risk Analytics | Portfolio exposure monitoring |
-| Hedging Simulator | Delta-neutral strategy testing |
-
----
-
-## 🚀 Installation
-
-### Clone Repository
-
-```bash
-git clone https://github.com/yourusername/live-options-analytics-terminal.git
-cd live-options-analytics-terminal
-```
-
-### Create Virtual Environment
+Create a virtual environment and install dependencies:
 
 ```bash
 python -m venv venv
-```
-
-### Activate Environment
-
-```bash
-source venv/bin/activate
-```
-
-### Install Dependencies
-
-```bash
+venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-### Run Backend
+## Run
 
 ```bash
-uvicorn app.main:app --reload
+python app/main.py
 ```
 
-### Launch Dashboard
+Then open `http://127.0.0.1:8050`.
 
-```bash
-python dashboard.py
-```
+## Notes
+- Uses `yfinance` for live market data (prototype; subject to rate limits).
+- Greeks and prices are Black-Scholes for European options.
+- Implied volatility is taken from the chain when available, otherwise estimated via Newton iterations.
+- Dash dashboard refreshes every ~10s (`dcc.Interval`) and FastAPI endpoints use a small in-memory TTL cache to reduce repeated yfinance calls.
+- Designed as a prototype for trading desks, retail platforms, and derivatives brokers.
 
----
-
-## 📈 Example Workflow
-
-```text
-Fetch Live Options Data
-          │
-          ▼
-Calculate Greeks
-          │
-          ▼
-Estimate Implied Volatility
-          │
-          ▼
-Generate IV Surface
-          │
-          ▼
-Perform P&L Scenario Analysis
-          │
-          ▼
-Run Delta Hedging Simulation
-          │
-          ▼
-Visualize Results
-```
-
----
-
-## 🎯 Real-World Applications
-
-### Proprietary Trading Firms
-- Volatility Trading
-- Risk Monitoring
-- Strategy Evaluation
-
-### Derivatives Brokers
-- Client Risk Analytics
-- Market Making Support
-- Portfolio Monitoring
-
-### Retail Trading Platforms
-- Advanced Analytics Tools
-- Educational Risk Management
-- Strategy Testing
-
-### Quantitative Researchers
-- Derivatives Research
-- Volatility Studies
-- Hedging Performance Analysis
-
----
-
-## 🔮 Future Enhancements
-
-- Monte Carlo Option Pricing
-- Binomial Tree Models
-- Heston Stochastic Volatility Model
-- American Option Pricing
-- Multi-Leg Strategy Builder
-- Portfolio VaR Integration
-- Broker API Connectivity
-- Machine Learning Volatility Forecasting
-
----
-
-## 📚 Skills Demonstrated
-
-✅ Quantitative Finance
-
-✅ Financial Engineering
-
-✅ Derivatives Pricing
-
-✅ Risk Management
-
-✅ Python Development
-
-✅ FastAPI
-
-✅ Plotly Dash
-
-✅ Market Data Processing
-
-✅ Financial Analytics
-
-✅ Data Visualization
-
----
-
-## 👨‍💻 Author
-
-**Kushagra Pandey**
-
-Aspiring Quantitative Researcher & Financial Engineer
-
----
-
-<div align="center">
-
-### ⭐ If you found this project interesting, consider giving it a star!
-
-"Turning market data into actionable options intelligence."
-
-</div>
